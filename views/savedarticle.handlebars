@@ -1,0 +1,57 @@
+<div class="save_articles">
+    <ul>
+    	{{#each articles }}
+    		<div class="panel panel-default">
+    		    <div class="panel-heading">
+    		        <h3 class="panel-title">{{title}}</h3>
+    		    </div>
+    		    <div class="panel-body">
+                    <div class="snipText">
+                        <a href="{{link}}" class="storyLink" target="_blank">
+                            {{this.snipText}}  
+                        </a>
+                    </div>
+                    <button data-id={{_id}} class="btn btn-primary pull-right deletesave">Delete Note</button>
+                    <button data-id={{_id}} class="btn btn-primary pull-right saved" id="addnote" data-toggle="modal" data-target="#savenoteModal" data-value="{{this._id}}">Write Notes</button>
+    		    </div>
+    		</div>
+            
+            <!-- Modal -->
+            <div id="savenoteModal" class="modal"  tabindex="-1" role="dialog" aria-labelledby="notelabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!--title including the id of the current article-->
+                            
+                            <h4 class="modal-title"><b>Write Notes:</b></h4>
+                            <!--where notes will be displayed-->
+                            <div>
+                                <ul >
+                                    <li id="notes">
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="enter comment">Enter New Note</label>
+                                <!--enter note text-->
+                                <textarea class="form-control" id="note" rows="4"></textarea>
+                            </div>
+                            <div>
+                                <!--save note-->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                            <button data-id={{_id}}  data-dismiss="modal" id="savebtn" class="btn btn-success savenote">Save notes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {{/each}}
+    </ul>
+
+</div>

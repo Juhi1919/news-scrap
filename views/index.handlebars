@@ -1,31 +1,41 @@
-<script id="article-template" type="text/x-handlebars-template">
-<h2>All News Scraper</h2>
+<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<h4>Mongo News Scrape</h4>
+				</div>
+				<form class="navbar-form navbar-right" >
+					<button variant="outline-primary" id="header-nav" action="/" method="get">Home</button>
+				</form>
+				<form class="navbar-form navbar-right" action="/savedarticle" method="get">
+					<button variant="outline-primary" id="header-nav">Saved Articles</button>
+				</form>
+				<form class="navbar-form navbar-right" action="/api/fetch" method="get">
+					<Button variant="outline-primary" id="header-nav" class="scrape">Scrape Article Here</Button>
+				</form>
+				
+			</div>
+		</nav>
 
+<div class="articles content">
 
+    {{#each articles }}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{title}}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="snipText">
+          <a href="{{link}}" class="storyLink" target="_blank">
+              {{this.snipText}}  
+          </a>
+        </div>  
+        <button data-id={{_id}} class="btn btn-success pull-right savearticle">Save Article</button>
+      </div>
+    </div>
+    <br />
 
-<h3>Articles</h3>
+    {{/each}}
 
-<ul>
-  {{#each articles}}
-    {{#unless this.sleepy}}
-      <li>
-        {{this.title}}
-        {{this.link}}  
-      </li>
-    {{/unless}}
-  {{/each}}
-</ul>
+</div>
 
-<h3>Notes</h3>
-
-<ul>
-  {{#each notes}}
-    {{#if this.sleepy}}
-      <li>
-        {{this.title}} 
-        {{this.body}}           
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
-</script>
+		
